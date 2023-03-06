@@ -23,3 +23,8 @@
 ## Outline
 
 ![Lab 06 Outline](https://user-images.githubusercontent.com/120413183/223247422-3137510a-23c1-48d9-a6f0-f68335c57ca1.png)
+
+
+## Contributers
+
+- March 6, 2023: Mohammed Abubakar
