@@ -15,7 +15,7 @@ class List extends React.Component {
         
       </ListGroup>
 
-      <img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.props.data.lat},&${this.props.data.lon}&zoom=15&size=500x500&format=png&maptype=street&markers=icon:small-yellow-cutout`} alt="map">
+      <img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.props.data.lat},&${this.props.data.lon}&zoom=15&size=500x500&format=png&maptype=street&markers=icon:small-yellow-cutout`} alt="map">
         </img>
 
 
@@ -28,7 +28,3 @@ class List extends React.Component {
 
 
 export default List;
-
-
-//img src={`https://maps.locationiq.com/v3/staticmap?key=${REACT_APP_CITY_KEY}&center=${this.props.data.lat},&${this.props.data.lon}&zoom=15&size=500x500&format=png&maptype=street&markers=icon:small-yellow-cutout`} alt="map">
-//</img>
