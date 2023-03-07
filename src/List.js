@@ -11,8 +11,12 @@ class List extends React.Component {
           <ListGroup.Item>{this.props.data.display_name}</ListGroup.Item>
           <ListGroup.Item>{this.props.data.lat}</ListGroup.Item>
           <ListGroup.Item>{this.props.data.lon}</ListGroup.Item>
-        </ListGroup>
 
+        
+      </ListGroup>
+
+      <img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.props.data.lat},&${this.props.data.lon}&zoom=15&size=500x500&format=png&maptype=street&markers=icon:small-yellow-cutout`} alt="map">
+        </img>
 
 
 

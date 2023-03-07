@@ -64,6 +64,7 @@ class App extends React.Component {
 
           <List
             data={this.state.cityData}
+           
           />
 
         </main>
