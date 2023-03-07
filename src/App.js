@@ -1,7 +1,7 @@
 import React from 'react';
 import Forms from './Form';
 import List from './List';
-//import Alert from 'react-bootstrap/Alert';
+import Alert from 'react-bootstrap/Alert';
 import axios from 'axios';
 
 
@@ -11,8 +11,8 @@ class App extends React.Component {
     this.state = {
       city: '',
       cityData: {},
-      latitude: '',
-      longitude: '',
+      lat: '',
+      lon: '',
       error: false,
       errorMessage: '',
       cityErrorInput: true
@@ -27,18 +27,20 @@ class App extends React.Component {
 
     this.setState({
       cityData: apiCity.data[0],
-      latitude: apiCity.data[0].lat,
-      longitude: apiCity.data[0].lon
+      lat: apiCity.data[0].lat,
+      lon: apiCity.data[0].lon,
+      cityErrorInput: false,
+      error: false
     });
 
-  //}
-  //catch(error) {
-  //  console.log('error: ', error);
-  //  console.log('error.message: ', error.message);
-  //  this.setState({
-  //    error: true,
-  //    errorMessage: `An Error Occured: ${error.message}`
-  //  })
+  }
+  catch(error) {
+    //console.log('error: ', error);
+    //console.log('error.message: ', error.message);
+    this.setState({
+      error: true,
+      errorMessage: `An Error Occured: ${error.message}`
+    })
   }
 
   handleCityName = (event) => {
@@ -54,20 +56,28 @@ class App extends React.Component {
   render() {
     return (
       <>
+        <header>
+          <h1>City Explorer</h1>
+        </header>
         <main>
           <Forms
             handleCityName={this.handleCityName}
             handleCitySubmit={this.handleCitySubmit}
             cityData={this.state.cityData}
           />
+          {this.state.error || this.state.cityErrorInput ?
+            <Alert key='invalid' variant='invalid'>
+              {this.state.errorMessage}
+            </Alert>
 
+          :
 
           <List
             data={this.state.cityData}
-           
           />
-
+          }
         </main>
+        <footer>&copy; Ryan Bagan 2023</footer>
 
       </>
     );
