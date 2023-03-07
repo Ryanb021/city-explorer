@@ -11,29 +11,29 @@ class App extends React.Component {
     this.state = {
       city: '',
       cityData: {},
-      latitude:'',
-      longitude:''
+      latitude: '',
+      longitude: ''
     }
   }
 
-  // handle functions
+
   handleCitySubmit = async (event) => {
     event.preventDefault();
-    console.log ('handleSubmitCity works');
-    let cityToApi = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
+    //console.log('handleCitySubmit works');
+    let apiCity = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.city}&format=json`);
 
     this.setState({
-      cityData: cityToApi.data[0],
-      lat: cityToApi.data[0].lat,
-      lon: cityToApi.data[0].lon
+      cityData: apiCity.data[0],
+      latitude: apiCity.data[0].lat,
+      longitude: apiCity.data[0].lon
     })
 
   }
 
-  handleTextCity = (e) => {
+  handleCityName = (event) => {
 
     this.setState({
-      city: e.target.value
+      city: event.target.value
     })
 
 
@@ -44,13 +44,13 @@ class App extends React.Component {
     return (
       <>
         <main>
-          <Forms 
-          handleTextCity = {this.handleTextCity}
-          handleCitySubmit = {this.handleCitySubmit}
-          cityData ={this.state.cityData}
+          <Forms
+            handleCityName={this.handleCityName}
+            handleCitySubmit={this.handleCitySubmit}
+            cityData={this.state.cityData}
           />
           <List
-          data ={this.state.cityData}
+            data={this.state.cityData}
           />
         </main>
 

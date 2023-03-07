@@ -12,7 +12,7 @@ class Forms extends React.Component {
         <Form onSubmit={this.props.handleCitySubmit}>
           <Form.Group>
             <Form.Label>Search for City Data</Form.Label>
-            <Form.Control type="text" placeholder="eg. Seattle" name="cityInput" onChange={this.props.handleTextCity} required />
+            <Form.Control type="text" placeholder="city search" name="cityInput" onChange={this.props.handleCityName} required />
             <Button type="submit">Explore!</Button>
           </Form.Group>
         </Form>
