@@ -23,7 +23,7 @@ class App extends React.Component {
   handleCitySubmit = async (event) => {
     event.preventDefault();
     //console.log('handleCitySubmit works');
-    let apiCity = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.city}&format=json`);
+    let apiCity = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
 
     this.setState({
       cityData: apiCity.data[0],
