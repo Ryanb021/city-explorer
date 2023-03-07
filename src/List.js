@@ -4,7 +4,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 class List extends React.Component {
 
   render() {
-    //console.log(this.props.data);
+
     return (
       <>
         <ListGroup>
@@ -13,8 +13,10 @@ class List extends React.Component {
           <ListGroup.Item>{this.props.data.lon}</ListGroup.Item>
         </ListGroup>
 
+
         <img src={`https://maps.locationiq.com/v3/staticmap?key=${REACT_APP_CITY_KEY}&center=${this.props.data.lat},&${this.props.data.lon}&zoom=15&size=500x500&format=png&maptype=street&markers=icon:small-yellow-cutout`} alt="map">
         </img>
+
 
       </>
     )
