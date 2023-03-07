@@ -1,7 +1,7 @@
 import React from 'react';
 import Forms from './Form';
 import List from './List';
-import Alert from 'react-bootstrap/Alert';
+//import Alert from 'react-bootstrap/Alert';
 import axios from 'axios';
 
 
@@ -31,14 +31,14 @@ class App extends React.Component {
       longitude: apiCity.data[0].lon
     });
 
-  }
-  catch(error) {
-    console.log('error: ', error);
-    console.log('error.message: ', error.message);
-    this.setState({
-      error: true,
-      errorMessage: `An Error Occured: ${error.message}`
-    })
+  //}
+  //catch(error) {
+  //  console.log('error: ', error);
+  //  console.log('error.message: ', error.message);
+  //  this.setState({
+  //    error: true,
+  //    errorMessage: `An Error Occured: ${error.message}`
+  //  })
   }
 
   handleCityName = (event) => {
@@ -60,15 +60,12 @@ class App extends React.Component {
             handleCitySubmit={this.handleCitySubmit}
             cityData={this.state.cityData}
           />
-          {this.state.error || this.state.cityErrorInput ?
-            <Alert key='invalid' variant='invalid'>{this.setState.errorMessage}</Alert>
 
-          :
 
           <List
             data={this.state.cityData}
           />
-}
+
         </main>
 
       </>
@@ -77,3 +74,9 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+//{this.state.error || this.state.cityErrorInput ?
+//  <Alert key='invalid' variant='invalid'>{this.setState.errorMessage}</Alert>
+
+//:
