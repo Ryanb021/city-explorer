@@ -15,7 +15,9 @@ class App extends React.Component {
       lon: '',
       error: false,
       errorMessage: '',
-      cityErrorInput: true
+      cityErrorInput: true,
+      cityWeather: {},
+      cityErrorWeather: true
     }
   }
 
@@ -25,12 +27,17 @@ class App extends React.Component {
     //console.log('handleCitySubmit works');
     let apiCity = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
 
+    let connectServer = await axios.get(`${process.env.REACT_APP_SERVER}/weather?search=${this.state.city}&format=json`);
+
     this.setState({
       cityData: apiCity.data[0],
       lat: apiCity.data[0].lat,
       lon: apiCity.data[0].lon,
       cityErrorInput: false,
-      error: false
+      error: false,
+      cityWeather: connectServer.data,
+      cityErrorWeather: false
+
     });
 
   }
@@ -39,7 +46,7 @@ class App extends React.Component {
     //console.log('error.message: ', error.message);
     this.setState({
       error: true,
-      errorMessage: `An Error Occured: ${error.message}`
+      errorMessage: `THIS IS AN ERROR MY FRIEND: ${error.message}`
     })
   }
 
@@ -65,7 +72,7 @@ class App extends React.Component {
             handleCitySubmit={this.handleCitySubmit}
             cityData={this.state.cityData}
           />
-          {this.state.error || this.state.cityErrorInput ?
+          {this.state.error || this.state.cityErrorInput || this.state.cityErrorWeather ?
             <Alert key='invalid' variant='invalid'>
               {this.state.errorMessage}
             </Alert>
