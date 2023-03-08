@@ -2,6 +2,7 @@ import React from 'react';
 import Forms from './Form';
 import List from './List';
 import Alert from 'react-bootstrap/Alert';
+import Weather from './Weather';
 import axios from 'axios';
 
 
@@ -25,31 +26,32 @@ class App extends React.Component {
   handleCitySubmit = async (event) => {
     event.preventDefault();
     //console.log('handleCitySubmit works');
-    let apiCity = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
+    try {
+      let apiCity = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
 
-    let connectServer = await axios.get(`${process.env.REACT_APP_SERVER}/weather?search=${this.state.city}&format=json`);
+      let connectServer = await axios.get(`${process.env.REACT_APP_SERVER}/weather?search=${this.state.city}&format=json`);
 
-    this.setState({
-      cityData: apiCity.data[0],
-      lat: apiCity.data[0].lat,
-      lon: apiCity.data[0].lon,
-      cityErrorInput: false,
-      error: false,
-      cityWeather: connectServer.data,
-      cityErrorWeather: false
+      this.setState({
+        cityData: apiCity.data[0],
+        lat: apiCity.data[0].lat,
+        lon: apiCity.data[0].lon,
+        cityErrorInput: false,
+        error: false,
+        cityWeather: connectServer.data,
+        cityErrorWeather: false
 
-    });
+      });
 
+    }
+    catch (error) {
+      //console.log('error: ', error);
+      //console.log('error.message: ', error.message);
+      this.setState({
+        error: true,
+        errorMessage: `THIS IS AN ERROR MY FRIEND: ${error.message}`
+      })
+    }
   }
-  catch(error) {
-    //console.log('error: ', error);
-    //console.log('error.message: ', error.message);
-    this.setState({
-      error: true,
-      errorMessage: `THIS IS AN ERROR MY FRIEND: ${error.message}`
-    })
-  }
-
   handleCityName = (event) => {
 
     this.setState({
@@ -77,11 +79,15 @@ class App extends React.Component {
               {this.state.errorMessage}
             </Alert>
 
-          :
-
-          <List
-            data={this.state.cityData}
-          />
+            :
+            <>
+              <List
+                data={this.state.cityData}
+              />
+              <Weather
+                cityWeather={this.state.cityWeather}
+              />
+            </>
           }
         </main>
         <footer>&copy; Ryan Bagan 2023</footer>
