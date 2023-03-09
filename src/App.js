@@ -3,7 +3,8 @@ import Forms from './Form';
 import List from './List';
 import Alert from 'react-bootstrap/Alert';
 import Weather from './Weather';
-import axios from 'axios';
+import Movie from './Movie';
+import axios from 'axios';      
 
 
 class App extends React.Component {
@@ -18,7 +19,8 @@ class App extends React.Component {
       errorMessage: '',
       cityErrorInput: true,
       cityWeather: {},
-      cityErrorWeather: true
+      cityErrorWeather: true,
+      cityMovies: {}
     }
   }
 
@@ -29,7 +31,13 @@ class App extends React.Component {
     try {
       let apiCity = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
 
-      let connectServer = await axios.get(`${process.env.REACT_APP_SERVER}/weather?search=${this.state.city}&format=json`);
+
+      //connect to movie server
+      let tomCruiseServer = await axios.get(`${process.env.REACT_APP_SERVER}/movie?tomcruise=${this.state.city}`);
+
+
+      //connect lat lon to server
+      let connectServer = await axios.get(`${process.env.REACT_APP_SERVER}/weather?search=${this.state.city}&lat=${apiCity.data[0].lat}&lon=${apiCity.data[0].lon}`);
 
       this.setState({
         cityData: apiCity.data[0],
@@ -38,7 +46,8 @@ class App extends React.Component {
         cityErrorInput: false,
         error: false,
         cityWeather: connectServer.data,
-        cityErrorWeather: false
+        cityErrorWeather: false,
+        cityMovies: tomCruiseServer.data
 
       });
 
@@ -52,6 +61,7 @@ class App extends React.Component {
       })
     }
   }
+  //OnChange
   handleCityName = (event) => {
 
     this.setState({
@@ -86,6 +96,9 @@ class App extends React.Component {
               />
               <Weather
                 cityWeather={this.state.cityWeather}
+              />
+              <Movie
+              cityMovies={this.state.cityMovies}
               />
             </>
           }
