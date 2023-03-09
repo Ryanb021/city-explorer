@@ -18,13 +18,11 @@
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+- March 6, 2023: Mohammed Abubakar
+- March 7, 2023: Phillip Chaplin
+- March 8, 2023: Nate Brown
 
 ## Outline
 
 ![Lab 06 Outline](https://user-images.githubusercontent.com/120413183/223247422-3137510a-23c1-48d9-a6f0-f68335c57ca1.png)
-
-
-## Contributers
-
-- March 6, 2023: Mohammed Abubakar

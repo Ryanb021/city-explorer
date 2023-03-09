@@ -4,7 +4,8 @@ import List from './List';
 import Alert from 'react-bootstrap/Alert';
 import Weather from './Weather';
 import Movie from './Movie';
-import axios from 'axios';      
+import axios from 'axios';
+//import './App.css';
 
 
 class App extends React.Component {
@@ -33,7 +34,7 @@ class App extends React.Component {
 
 
       //connect to movie server
-      let tomCruiseServer = await axios.get(`${process.env.REACT_APP_SERVER}/movie?tomcruise=${this.state.city}`);
+      let tomCruiseServer = await axios.get(`${process.env.REACT_APP_SERVER}/movies?tomcruise=${this.state.city}`);
 
 
       //connect lat lon to server
