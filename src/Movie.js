@@ -11,7 +11,10 @@ class Movie extends React.Component {
       (i, index) => {
         return <>
         <Card key={index}>
+          { i.image_url
+          &&
           <Card.Img variant="top" src={i.image_url}/>
+      }
           <Card.Body>
             <Card.Title>{i.title}</Card.Title>
             <Card.Text>

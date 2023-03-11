@@ -78,6 +78,8 @@ class App extends React.Component {
       <>
         <header>
           <h1 className='neonText'>Grand Theft Auto<br />City Explorer</h1>
+
+          <h2>Before committing crime of Grand Theft, check out the latest weather information of your favorite city to terrorize. Plus... bonus of movies history informtation! Enjoy gangsters! </h2>
         </header>
         <main>
           <Forms
