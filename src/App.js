@@ -103,6 +103,10 @@ class App extends React.Component {
               />
             </>
           }
+            {
+            this.state.error && <Alert key='fatal' variant='fatal'>
+              {this.state.errorMessage}</Alert>
+          }
         </main>
         <footer>&copy; Ryan Bagan 2023</footer>
 
