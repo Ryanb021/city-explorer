@@ -5,7 +5,7 @@ import Alert from 'react-bootstrap/Alert';
 import Weather from './Weather';
 import Movie from './Movie';
 import axios from 'axios';
-//import './App.css';
+import './App.css';
 
 
 class App extends React.Component {
@@ -77,7 +77,7 @@ class App extends React.Component {
     return (
       <>
         <header>
-          <h1>City Explorer</h1>
+          <h1 className='neonText'>Grand Theft Auto<br />City Explorer</h1>
         </header>
         <main>
           <Forms
