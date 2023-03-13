@@ -1,5 +1,6 @@
 import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
+import './List.css';
 
 class List extends React.Component {
 
@@ -14,11 +15,11 @@ class List extends React.Component {
 
         
       </ListGroup>
-
+      <div>
       <img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.props.data.lat},${this.props.data.lon}&zoom=15&size=500x500&format=png&maptype=street&markers=icon:small-yellow-cutout`} alt="map">
         </img>
 
-
+        </div>
 
 
       </>
